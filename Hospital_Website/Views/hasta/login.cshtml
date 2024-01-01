@@ -1,0 +1,76 @@
+﻿    @model Hospital_Website.Models.hasta
+<style>
+    /* Stil dosyası (örneğin, site.css) */
+    .form-group {
+        margin-bottom: 20px;
+        text-align: center; /* Butonu ve yazı alanlarını ortala */
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 80%; /* Yazı alanlarını daha dar yapabilirsiniz */
+        max-width: 400px; /* İsteğe bağlı, maksimum genişliği sınırlayabilirsiniz */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+        margin: 0 auto; /* Yazı alanlarını yatayda ortala */
+    }
+
+    .text-danger {
+        color: #d9534f;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block; /* Butonu blok eleman yaparak ortala */
+        margin: 0 auto; /* Butonu yatayda ortala */
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .login-container {
+        max-width: 400px; /* İsteğe bağlı olarak maksimum genişliği ayarlayabilirsiniz */
+        margin: 0 auto; /* Dikeyde ve yatayda merkezlemek için kullanılır */
+        padding: 20px; /* İsteğe bağlı olarak içeriği boşluklandırabilirsiniz */
+        background-color: #f8f8f8; /* Dikdörtgen arka plan rengi */
+        border: 1px solid #ccc; /* Dikdörtgen çerçevesi */
+        border-radius: 5px; /* Dikdörtgen köşe yuvarlaması */
+        text-align: center; /* İçerik ortalanır */
+    }
+</style>
+
+<div class="login-container">
+    <h2>@_localization.Getkey("Login").Value</h2>
+    <form asp-action="Giris" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="tc">@_localization.Getkey("Kimlik").Value</label>
+            <input asp-for="tc" class="form-control" />
+            <span asp-validation-for="tc" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="sifre">@_localization.Getkey("Sifre").Value</label>
+            <input asp-for="sifre" type="password" class="form-control" />
+            <span asp-validation-for="sifre" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">@_localization.Getkey("Login").Value</button>
+    </form>
+
+</div>
+

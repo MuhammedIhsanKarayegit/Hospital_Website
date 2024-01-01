@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Hospital_Website.Models.randevu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>@_localization.Getkey("Home").Value</h1>
+
+<p>
+    <a asp-action="Create">@_localization.Getkey("Create").Value</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @_localization.Getkey("Name").Value
+            </th>
+            <th>
+                @_localization.Getkey("Hasta").Value
+            </th>
+            <th>
+                @_localization.Getkey("Tarih").Value
+            </th>
+            <th>
+                @_localization.Getkey("Doktor").Value
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hasta.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.doktor.id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

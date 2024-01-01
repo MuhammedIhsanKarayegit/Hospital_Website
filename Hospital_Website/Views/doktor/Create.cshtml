@@ -1,0 +1,47 @@
+﻿@model Hospital_Website.Models.doktor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>@_localization.Getkey("Create").Value</h1>
+
+<h4>@_localization.Getkey("Doktor").Value</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+        <label asp-for="name">@_localization.Getkey("Mail").Value</label>
+        <input asp-for="name" class="form-control" />
+        <span asp-validation-for="name" class="text-danger"></span>
+    </div>
+            <div class="form-group">
+        <label asp-for="tc">@_localization.Getkey("Kimlik").Value</label>
+        <input asp-for="tc" class="form-control" />
+        <span asp-validation-for="tc" class="text-danger"></span>
+    </div>
+            <div class="form-group">
+                <label asp-for="poliklinikid">@_localization.Getkey("Poliklinik").Value</label>
+                <select asp-for="poliklinikid" class ="form-control" asp-items="ViewBag.poliklinikid"></select>
+            </div>
+            <div class="form-group">
+        <label asp-for="sifre">@_localization.Getkey("Sifre").Value</label>
+        <input asp-for="sifre" class="form-control" />
+        <span asp-validation-for="sifre" class="text-danger"></span>
+    </div>
+            <div class="form-group">
+                <input type="submit" value="@_localization.Getkey("Create").Value" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+   <a asp-action="Index">@_localization.Getkey("List").Value</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

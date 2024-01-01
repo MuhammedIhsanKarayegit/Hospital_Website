@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Hospital_Website.Models.poliklinik>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>@_localization.Getkey("Home").Value</h1>
+
+<p>
+    <a asp-action="Create">@_localization.Getkey("Create").Value</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                    @_localization.Getkey("Poliklinik").Value
+            </th>
+            <th>
+                    @_localization.Getkey("Hastane").Value
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hastane.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+﻿@model Hospital_Website.Models.poliklinik
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@_localization.Getkey("Detail").Value</h1>
+
+<div>
+    <h4>@_localization.Getkey("Poliklinik").Value</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label for="Name">@_localization.Getkey("Poliklinik").Value</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            <label for="hastane.Id">@_localization.Getkey("Hastane").Value</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.hastane.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">@_localization.Getkey("Edit").Value</a> |
+    <a asp-action="Index">@_localization.Getkey("List").Value</a>
+</div>

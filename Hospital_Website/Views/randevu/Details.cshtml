@@ -1,0 +1,41 @@
+﻿@model Hospital_Website.Models.randevu
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@_localization.Getkey("Detail").Value</h1>
+<div>
+    <h4>@_localization.Getkey("Randevu").Value</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <label for="Name">@_localization.Getkey("Name").Value</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            <label for="hasta.id">@_localization.Getkey("Hasta").Value</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.hasta.id)
+        </dd>
+        <dt class = "col-sm-2">
+            <label for="tarih">@_localization.Getkey("Tarih").Value</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tarih)
+        </dd>
+        <dt class = "col-sm-2">
+            <label for="doktor.id">@_localization.Getkey("Doktor").Value</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.doktor.id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">@_localization.Getkey("Edit").Value</a> |
+    <a asp-action="Index">@_localization.Getkey("List").Value</a>
+</div>

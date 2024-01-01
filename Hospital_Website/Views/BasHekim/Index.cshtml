@@ -1,0 +1,21 @@
+﻿@model Hospital_Website.Models.AdminLoginModel
+
+<h2>@_localization.Getkey("Login").Value</h2>
+
+<form asp-action="Giris" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Email">@_localization.Getkey("Mail").Value</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password">@_localization.Getkey("Sifre").Value</label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@_localization.Getkey("Login").Value</button>
+</form>

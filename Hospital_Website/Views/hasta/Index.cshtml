@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Hospital_Website.Models.hasta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@_localization.Getkey("Home").Value</h1>
+
+<p>
+    <a asp-action="Create">@_localization.Getkey("Create").Value</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <br />
+                @_localization.Getkey("Name").Value
+            </th>
+            <th>
+                <br />
+                @_localization.Getkey("Kimlik").Value
+            </th>
+            <th>
+                <br />
+                @_localization.Getkey("Sifre").Value
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sifre)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">@_localization.Getkey("Edit").Value</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">@_localization.Getkey("Detail").Value</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">@_localization.Getkey("Delete").Value</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

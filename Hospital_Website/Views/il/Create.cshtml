@@ -1,0 +1,33 @@
+﻿@model Hospital_Website.Models.il
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>@_localization.Getkey("Create").Value</h1>
+
+<h4>@_localization.Getkey("Il").Value</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name">@_localization.Getkey("Il").Value</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@_localization.Getkey("Create").Value" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@_localization.Getkey("List").Value</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

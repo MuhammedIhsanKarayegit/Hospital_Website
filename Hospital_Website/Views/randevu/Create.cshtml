@@ -1,0 +1,55 @@
+﻿@model Hospital_Website.Models.randevu
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>@_localization.Getkey("Create").Value</h1>
+
+<h4>@_localization.Getkey("Randevu").Value</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              @*<div class="form-group">
+                <label asp-for="ilID" class="control-label"></label>
+                <select asp-for="ilID" class="form-control" asp-items="ViewBag.ilID"></select>
+            </div> 
+            <div class="form-group">
+                <label asp-for="ilceID" class="control-label"></label>
+                <select asp-for="ilceID" class="form-control" asp-items="ViewBag.ilceID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="hastaneID" class="control-label"></label>
+                <select asp-for="hastaneID" class="form-control" asp-items="ViewBag.hastaneID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="poliklinikID" class="control-label"></label>
+                <select asp-for="poliklinikID" class="form-control" asp-items="ViewBag.poliklinikID"></select>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="Name">@_localization.Getkey("Doktor").Value</label>
+                <select asp-for="doktorID" class="form-control" asp-items="ViewBag.doktorID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name">@_localization.Getkey("Tarih").Value</label>
+                <input asp-for="tarih" class="form-control" />
+                <span asp-validation-for="tarih" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@_localization.Getkey("Create").Value" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@_localization.Getkey("List").Value</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

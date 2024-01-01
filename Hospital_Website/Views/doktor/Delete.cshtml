@@ -1,0 +1,45 @@
+﻿@model Hospital_Website.Models.doktor
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>@_localization.Getkey("Delete").Value</h1>
+
+<h3>@_localization.Getkey("Delete.info").Value</h3>
+<div>
+    <h4>@_localization.Getkey("Doktor").Value</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+        <label for="name">@_localization.Getkey("Name").Value :</label>
+    </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt class="col-sm-2">
+        <label for="tc">@_localization.Getkey("Kimlik").Value :</label>
+    </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.tc)
+        </dd>
+        <dt class="col-sm-2">
+        <label for="poliklinikid">@_localization.Getkey("Poliklinik").Value :</label>
+    </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.poliklinik.Id)
+        </dd>
+        <dt class="col-sm-2">
+        <label for="sifre">@_localization.Getkey("Sifre").Value :</label>
+    </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sifre)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="@_localization.Getkey("Delete").Value" class="btn btn-danger" /> |
+         <a asp-action="Index">@_localization.Getkey("List").Value</a>
+    </form>
+</div>

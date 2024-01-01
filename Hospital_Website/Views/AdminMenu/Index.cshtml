@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Hastane, Hasta ve Doktor Yönetimi";
+}
+
+<h1>@_localization.Getkey("Admin.menu").Value</h1>
+
+<div>
+    <h2>@_localization.Getkey("Hastane.info").Value</h2>
+    <a asp-area="" asp-controller="hastane" asp-action="Create" class="btn btn-primary">@_localization.Getkey("Hastane.e").Value</a>
+    <a asp-area="" asp-controller="hastane" asp-action="Index" class="btn btn-warning">@_localization.Getkey("Hastane.d").Value</a>
+</div>
+
+<div>
+    <h2>@_localization.Getkey("Doktor.info").Value</h2>
+    <a asp-area="" asp-controller="doktor" asp-action="Create" class="btn btn-primary">@_localization.Getkey("Doktor.e").Value</a>
+    <a asp-area="" asp-controller="doktor" asp-action="Index" class="btn btn-warning">@_localization.Getkey("Doktor.d").Value</a>
+</div>
+
+<div>
+    <h2>@_localization.Getkey("Hasta.info").Value</h2>
+    <a asp-area="" asp-controller="hasta" asp-action="kayitOl" class="btn btn-primary">@_localization.Getkey("Hasta.e").Value</a>
+    <a asp-area="" asp-controller="hasta" asp-action="Index" class="btn btn-warning">@_localization.Getkey("Hasta.d").Value</a>
+</div>
