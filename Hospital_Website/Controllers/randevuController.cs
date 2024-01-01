@@ -19,6 +19,14 @@ namespace Hospital_Website.Controllers
             _context = context;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetCities()
+        {
+            var cities = await _context.il.ToListAsync();
+            return Json(new { data = cities });
+        }
+
+
         // GET: randevu
         public async Task<IActionResult> Index()
         {
@@ -49,6 +57,10 @@ namespace Hospital_Website.Controllers
         // GET: randevu/Create
         public IActionResult Create()
         {
+            ViewData["ilId"] = new SelectList(_context.il, "Id", "Name");
+            ViewData["ilceId"] = new SelectList(_context.ilce, "id", "name");
+            ViewData["hastaneId"] = new SelectList(_context.hastane, "Id", "Name");
+            ViewData["poliklinikId"] = new SelectList(_context.poliklinik, "Id", "Name");
             ViewData["doktorID"] = new SelectList(_context.doktor, "id", "name");
             //ViewData["ilID"] = new SelectList(_context.il, "Id", "Name");
             //ViewData["ilceID"] = new SelectList(_context.ilce, "id", "name");
@@ -65,15 +77,11 @@ namespace Hospital_Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,tarih,doktorID")] randevu randevu)
         {
-            if (ModelState.IsValid)
-            {
+
                 _context.Add(randevu);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["doktorID"] = new SelectList(_context.doktor, "id", "id", randevu.doktorID);
-            ViewData["hastaID"] = new SelectList(_context.hasta, "id", "id", randevu.hastaID);
-            return View(randevu);
+
         }
 
         // GET: randevu/Edit/5
@@ -107,8 +115,7 @@ namespace Hospital_Website.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(randevu);
@@ -126,10 +133,7 @@ namespace Hospital_Website.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["doktorID"] = new SelectList(_context.doktor, "id", "id", randevu.doktorID);
-            ViewData["hastaID"] = new SelectList(_context.hasta, "id", "id", randevu.hastaID);
-            return View(randevu);
+
         }
 
         // GET: randevu/Delete/5
@@ -175,5 +179,7 @@ namespace Hospital_Website.Controllers
         {
             return (_context.randevu?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+
     }
 }

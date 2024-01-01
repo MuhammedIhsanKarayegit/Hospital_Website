@@ -59,14 +59,11 @@ namespace Hospital_Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,name,ilID")] ilce ilce)
         {
-            if (ModelState.IsValid)
-            {
+
                 _context.Add(ilce);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["ilID"] = new SelectList(_context.il, "Id", "Id", ilce.ilID);
-            return View(ilce);
+
         }
 
         // GET: ilce/Edit/5
@@ -98,8 +95,7 @@ namespace Hospital_Website.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(ilce);
@@ -117,9 +113,6 @@ namespace Hospital_Website.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["ilID"] = new SelectList(_context.il, "Id", "Id", ilce.ilID);
-            return View(ilce);
         }
 
         // GET: ilce/Delete/5

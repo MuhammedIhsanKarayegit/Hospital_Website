@@ -59,14 +59,11 @@ namespace Hospital_Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,hastaneId")] poliklinik poliklinik)
         {
-            if (ModelState.IsValid)
-            {
+
                 _context.Add(poliklinik);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["hastaneId"] = new SelectList(_context.hastane, "Id", "Id", poliklinik.hastaneId);
-            return View(poliklinik);
+
         }
 
         // GET: poliklinik/Edit/5
@@ -98,8 +95,7 @@ namespace Hospital_Website.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(poliklinik);
@@ -117,9 +113,7 @@ namespace Hospital_Website.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["hastaneId"] = new SelectList(_context.hastane, "Id", "Id", poliklinik.hastaneId);
-            return View(poliklinik);
+
         }
 
         // GET: poliklinik/Delete/5

@@ -98,8 +98,7 @@ namespace Hospital_Website.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(doktor);
@@ -117,9 +116,7 @@ namespace Hospital_Website.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["poliklinikid"] = new SelectList(_context.Set<poliklinik>(), "Id", "Id", doktor.poliklinikid);
-            return View(doktor);
+ 
         }
 
         // GET: doktor/Delete/5

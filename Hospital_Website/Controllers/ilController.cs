@@ -58,13 +58,11 @@ namespace Hospital_Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] il il)
         {
-            if (ModelState.IsValid)
-            {
+
                 _context.Add(il);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(il);
+
         }
 
         // GET: il/Edit/5
@@ -95,8 +93,7 @@ namespace Hospital_Website.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
                     _context.Update(il);
@@ -114,7 +111,7 @@ namespace Hospital_Website.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(il);
         }
 

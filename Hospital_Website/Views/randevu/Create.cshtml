@@ -12,31 +12,27 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              @*<div class="form-group">
-                <label asp-for="ilID" class="control-label"></label>
-                <select asp-for="ilID" class="form-control" asp-items="ViewBag.ilID"></select>
-            </div> 
-            <div class="form-group">
-                <label asp-for="ilceID" class="control-label"></label>
-                <select asp-for="ilceID" class="form-control" asp-items="ViewBag.ilceID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="hastaneID" class="control-label"></label>
-                <select asp-for="hastaneID" class="form-control" asp-items="ViewBag.hastaneID"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="poliklinikID" class="control-label"></label>
-                <select asp-for="poliklinikID" class="form-control" asp-items="ViewBag.poliklinikID"></select>
-            </div> *@
-            <div class="form-group">
-                <label asp-for="Name">@_localization.Getkey("Doktor").Value</label>
-                <select asp-for="doktorID" class="form-control" asp-items="ViewBag.doktorID"></select>
-            </div>
+            <select id="citySelect" asp-for="doktor.poliklinik.hastane.ilce.ilID" asp-items="ViewBag.ilId" class="form-control">
+                <option value="">Şehir Seçiniz</option>
+            </select>
+            <select id="ilceSelect" asp-for="doktor.poliklinik.hastane.ilceID" asp-items="ViewBag.ilceId" class="form-control">
+                <option value="">İlçe Seçiniz</option>
+            </select>
+            <select id="hastaneSelect" asp-for="doktor.poliklinik.hastaneId" asp-items="ViewBag.hastaneId" class="form-control">
+                <option value="">Hastane Seçiniz</option>
+            </select>
+            <select id="poliklinikSelect" asp-for="doktor.poliklinikid" asp-items="ViewBag.poliklinikId" class="form-control">
+                <option value="">Poliklink Seçiniz</option>
+            </select>
+            <select id="doktorSelect" asp-for="doktorID" asp-items="ViewBag.doktorId" class="form-control">
+                <option value="">Doktor Seçiniz</option>
+            </select>
             <div class="form-group">
                 <label asp-for="Name">@_localization.Getkey("Tarih").Value</label>
                 <input asp-for="tarih" class="form-control" />
                 <span asp-validation-for="tarih" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="@_localization.Getkey("Create").Value" class="btn btn-primary" />
             </div>
@@ -52,4 +48,92 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('#citySelect').change(function () {
+                    var selectedCityId = $(this).val();
+                    if (selectedCityId) {
+                        $.ajax({
+                            url: '/Ajax/GetIlceler',
+                            type: 'GET',
+                            data: { cityId: selectedCityId },
+                            success: function (data) {
+                                populateDropdown('#ilceSelect', data, 'İlçe Seçiniz');
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+
+                $('#ilceSelect').change(function () {
+                    var selectedIlceId = $(this).val();
+                    if (selectedIlceId) {
+                        $.ajax({
+                                url: '/Ajax/GetHastaneler',
+                            type: 'GET',
+                            data: { ilceId: selectedIlceId },
+                            success: function (data) {
+                                populateDropdown('#hastaneSelect', data, 'Hastane Seçiniz');
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+
+                $('#hastaneSelect').change(function () {
+                    var selectedHastaneId = $(this).val();
+                    if (selectedHastaneId) {
+                        $.ajax({
+                                url: '/Ajax/GetPoliklinikler',
+                            type: 'GET',
+                            data: { hastaneId: selectedHastaneId },
+                            success: function (data) {
+                                populateDropdown('#poliklinikSelect', data, 'Poliklinik Seçiniz');
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+
+                $('#poliklinikSelect').change(function () {
+                    var selectedPoliklinikId = $(this).val();
+                    if (selectedPoliklinikId) {
+                        $.ajax({
+                                url: '/Ajax/GetDoktorlar',
+                            type: 'GET',
+                            data: { poliklinikId: selectedPoliklinikId },
+                            success: function (data) {
+                                populateDropdown('#doktorSelect', data, 'Doktor Seçiniz');
+                            },
+                            error: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
+                });
+
+                function populateDropdown(elementId, data, defaultOptionText) {
+                    $(elementId).html('');
+                    $(elementId).append($('<option>', {
+                        value: '',
+                        text: defaultOptionText
+                    }));
+                    $.each(data, function (i, item) {
+                        $(elementId).append($('<option>', {
+                            value: item.Value,
+                            text: item.Text
+                        }));
+                    });
+                }
+            });
+        </script>
 }
