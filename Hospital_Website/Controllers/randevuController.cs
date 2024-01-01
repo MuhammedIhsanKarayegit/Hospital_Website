@@ -75,10 +75,11 @@ namespace Hospital_Website.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,tarih,doktorID")] randevu randevu)
+        public async Task<IActionResult> Create([Bind("Id,ilId,ilceId,hastaneId,poliklinkId,tarih,doktorID")] randevu randevu)
         {
-
-                _context.Add(randevu);
+            randevu.Name = "Default Name";
+            randevu.hastaID = 1;
+            _context.Add(randevu);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
 

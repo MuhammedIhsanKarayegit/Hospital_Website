@@ -92,12 +92,22 @@
                         </div>
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="hasta" asp-action="login">@_localization.Getkey("Login").Value</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="hasta" asp-action="kayitOl">@_localization.Getkey("Signup").Value</a>
-                        </li>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Log Out</a>
+                                </li>
+                        }
+                        else
+                        {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="hasta" asp-action="login">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="hasta" asp-action="kayitOl">Signup</a>
+                                </li>
+                        }
                     </ul>
                 </div>
             </div>

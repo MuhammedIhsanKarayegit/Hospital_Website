@@ -16,7 +16,7 @@ namespace Hospital_Website.Controllers
         {
             //var user = _context.hasta.FirstOrDefault(u => u.tc == hasta.tc && u.sifre == hasta.sifre);
 
-            if (admin.Email == "muhammed.karayegit@ogr.sakarya.edu.tr" || admin.Email =="fatih.ozdemir20@ogr.sakarya.edu.tr" && admin.Password =="sau")
+            if (admin.Email == "G211210023@ogr.sakarya.edu.tr" || admin.Email =="G201210047@ogr.sakarya.edu.tr" && admin.Password =="sau")
             {
                 HttpContext.Session.SetString("SessionUser", admin.Email);
                 HttpContext.Session.SetString("kullanıcıYetki", "Admin");

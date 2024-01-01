@@ -87,7 +87,7 @@ namespace Hospital_Website.Controllers
             {
                 _context.Add(hasta);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "randevu");
             }
             return View(hasta);
         }

@@ -14,10 +14,16 @@
     <thead>
         <tr>
             <th>
-                @_localization.Getkey("Name").Value
+                @_localization.Getkey("İl").Value
             </th>
             <th>
-                @_localization.Getkey("Hasta").Value
+                @_localization.Getkey("İlce").Value
+            </th>
+            <th>
+                @_localization.Getkey("Hastane").Value
+            </th>
+            <th>
+                @_localization.Getkey("Polikinik").Value
             </th>
             <th>
                 @_localization.Getkey("Tarih").Value
@@ -29,26 +35,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hasta.id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tarih)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.doktor.id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.doktor.poliklinik.hastane.ilce.ilID)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.doktor.poliklinik.hastane.ilceID)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.doktor.poliklinik.hastaneId)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.doktor.poliklinikid)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.tarih)
+                    </td>
+                    <td>
+                    @Html.DisplayFor(modelItem => item.doktorID)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+        }
     </tbody>
 </table>
